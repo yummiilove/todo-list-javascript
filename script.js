@@ -1,4 +1,3 @@
-
 // GET SAVED TASKS FROM LOCAL STORAGE
 
 const savedTasks = localStorage.getItem("tasks");
@@ -11,6 +10,7 @@ let tasks = savedTasks ? JSON.parse(savedTasks) : [];
 tasks = tasks.map(function(task, index) {
 
     // If old task is a string
+
     if (typeof task === "string") {
 
         return {
@@ -22,6 +22,7 @@ tasks = tasks.map(function(task, index) {
     }
 
     // If task is already an object
+
     return task;
 
 });
@@ -44,6 +45,22 @@ const taskList = document.getElementById("taskList");
 const allTasksButton = document.getElementById("allTasks");
 const activeTasksButton = document.getElementById("activeTasks");
 const completedTasksButton = document.getElementById("completedTasks");
+
+
+// GET COUNTER ELEMENTS
+
+const totalCount = document.getElementById("totalCount");
+const activeCount = document.getElementById("activeCount");
+const completedCount = document.getElementById("completedCount");
+
+
+// GET TASK ACTION BUTTONS
+
+const clearCompletedButton =
+    document.getElementById("clearCompleted");
+
+const clearAllButton =
+    document.getElementById("clearAll");
 
 
 // CURRENT FILTER
@@ -165,11 +182,17 @@ function displayTask(task) {
         );
 
 
-        if (newTaskName !== null && newTaskName.trim() !== "") {
+        if (
+            newTaskName !== null &&
+            newTaskName.trim() !== ""
+        ) {
 
             task.name = newTaskName.trim();
 
-            localStorage.setItem("tasks", JSON.stringify(tasks));
+            localStorage.setItem(
+                "tasks",
+                JSON.stringify(tasks)
+            );
 
             renderTasks();
 
@@ -216,6 +239,44 @@ function getFilteredTasks() {
 }
 
 
+// UPDATE TASK COUNTER
+
+function updateTaskCounter() {
+
+    // TOTAL TASKS
+
+    const total = tasks.length;
+
+
+    // ACTIVE TASKS
+
+    const active = tasks.filter(function(task) {
+
+        return task.completed === false;
+
+    }).length;
+
+
+    // COMPLETED TASKS
+
+    const completed = tasks.filter(function(task) {
+
+        return task.completed === true;
+
+    }).length;
+
+
+    // UPDATE HTML
+
+    totalCount.textContent = total;
+
+    activeCount.textContent = active;
+
+    completedCount.textContent = completed;
+
+}
+
+
 // RENDER TASKS
 
 function renderTasks() {
@@ -230,13 +291,18 @@ function renderTasks() {
     const filteredTasks = getFilteredTasks();
 
 
-    // DISPLAY THEM
+    // DISPLAY TASKS
 
     filteredTasks.forEach(function(task) {
 
         displayTask(task);
 
     });
+
+
+    // UPDATE COUNTER
+
+    updateTaskCounter();
 
 }
 
@@ -293,6 +359,58 @@ activeTasksButton.addEventListener("click", function() {
 completedTasksButton.addEventListener("click", function() {
 
     currentFilter = "completed";
+
+    renderTasks();
+
+});
+
+
+// CLEAR COMPLETED TASKS
+
+clearCompletedButton.addEventListener("click", function() {
+
+    tasks = tasks.filter(function(task) {
+
+        return task.completed === false;
+
+    });
+
+
+    localStorage.setItem(
+        "tasks",
+        JSON.stringify(tasks)
+    );
+
+
+    renderTasks();
+
+});
+
+
+// CLEAR ALL TASKS
+
+clearAllButton.addEventListener("click", function() {
+
+    const confirmDelete = confirm(
+        "Are you sure you want to delete all tasks?"
+    );
+
+
+    if (!confirmDelete) {
+
+        return;
+
+    }
+
+
+    tasks = [];
+
+
+    localStorage.setItem(
+        "tasks",
+        JSON.stringify(tasks)
+    );
+
 
     renderTasks();
 

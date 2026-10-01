@@ -163,7 +163,81 @@ body {
 .filters button:active {
     transform: scale(0.97);
 }
+/* TASK COUNTER */
 
+.taskCounter {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 18px;
+
+    padding: 12px 5px;
+
+    color: #aaa;
+
+    font-size: 13px;
+}
+
+.taskCounter span {
+    display: flex;
+
+    gap: 5px;
+
+    align-items: center;
+}
+
+.taskCounter strong {
+    color: white;
+
+    font-size: 14px;
+}
+
+/* TASK ACTION BUTTONS */
+
+.taskActions {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 5px;
+}
+
+.taskActions button {
+    flex: 1;
+
+    padding: 10px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    color: #aaa;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    transition: 0.25s;
+}
+
+.taskActions button:hover {
+    background: rgba(124, 92, 255, 0.15);
+
+    color: white;
+
+    border-color: rgba(124, 92, 255, 0.3);
+
+    transform: translateY(-1px);
+}
+
+.taskActions button:active {
+    transform: scale(0.97);
+}
 
 /* TASK LIST */
 
@@ -333,6 +407,24 @@ body {
         padding: 9px 6px;
 
         font-size: 13px;
+    }
+    .taskCounter {
+        font-size: 12px;
+
+        gap: 8px;
+    }
+
+    .taskCounter strong {
+        font-size: 13px;
+    }
+    .taskActions {
+    gap: 6px;
+}
+
+    .taskActions button {
+        padding: 9px 6px;
+
+        font-size: 12px;
     }
 
 }

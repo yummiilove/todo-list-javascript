@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,16 +13,62 @@
 
     <div class="app">
 
-        <input type="text" id="inputField" placeholder="Type something...">
+        <input
+            type="text"
+            id="inputField"
+            placeholder="Type something..."
+        >
 
         <button id="addtask">Add Task</button>
 
+
         <!-- FILTER BUTTONS -->
+
         <div class="filters">
+
             <button id="allTasks">All</button>
+
             <button id="activeTasks">Active</button>
+
             <button id="completedTasks">Completed</button>
+
         </div>
+
+
+        <!-- TASK COUNTER -->
+
+        <div class="taskCounter">
+
+            <span>
+                Total: <strong id="totalCount">0</strong>
+            </span>
+
+            <span>
+                Active: <strong id="activeCount">0</strong>
+            </span>
+
+            <span>
+                Completed: <strong id="completedCount">0</strong>
+            </span>
+
+        </div>
+
+         <!-- TASK ACTIONS -->
+
+        <div class="taskActions">
+
+            <button id="clearCompleted">
+                🧹 Clear Completed
+            </button>
+
+            <button id="clearAll">
+                🗑️ Clear All
+            </button>
+
+        </div>
+
+
+        <!-- TASK LIST -->
 
         <ul id="taskList"></ul>
 
@@ -30,5 +77,6 @@
     <script src="script.js"></script>
 
 </body>
+
 </html>
 
