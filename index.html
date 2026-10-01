@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,13 +7,28 @@
     <title>My Website</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
     <div class="app">
+
         <input type="text" id="inputField" placeholder="Type something...">
+
         <button id="addtask">Add Task</button>
-        
+
+        <!-- FILTER BUTTONS -->
+        <div class="filters">
+            <button id="allTasks">All</button>
+            <button id="activeTasks">Active</button>
+            <button id="completedTasks">Completed</button>
+        </div>
+
         <ul id="taskList"></ul>
+
     </div>
+
     <script src="script.js"></script>
-</body>    
+
+</body>
 </html>
+

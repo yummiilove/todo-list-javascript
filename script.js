@@ -1,34 +1,92 @@
 
+// GET SAVED TASKS FROM LOCAL STORAGE
+
 const savedTasks = localStorage.getItem("tasks");
 
-const tasks = savedTasks ? JSON.parse(savedTasks) : [];
+let tasks = savedTasks ? JSON.parse(savedTasks) : [];
+
+
+// CONVERT OLD STRING TASKS INTO OBJECTS
+
+tasks = tasks.map(function(task, index) {
+
+    // If old task is a string
+    if (typeof task === "string") {
+
+        return {
+            id: Date.now() + index,
+            name: task,
+            completed: false
+        };
+
+    }
+
+    // If task is already an object
+    return task;
+
+});
+
+
+// SAVE THE UPDATED DATA
+
+localStorage.setItem("tasks", JSON.stringify(tasks));
+
+
+// GET HTML ELEMENTS
 
 const addTaskButton = document.getElementById("addtask");
 const inputField = document.getElementById("inputField");
 const taskList = document.getElementById("taskList");
 
 
-// Add task to array and LocalStorage
+// GET FILTER BUTTONS
+
+const allTasksButton = document.getElementById("allTasks");
+const activeTasksButton = document.getElementById("activeTasks");
+const completedTasksButton = document.getElementById("completedTasks");
+
+
+// CURRENT FILTER
+
+let currentFilter = "all";
+
+
+// ADD TASK
+
 function addTask(taskname) {
-    tasks.push(taskname);
+
+    const task = {
+        id: Date.now(),
+        name: taskname,
+        completed: false
+    };
+
+    tasks.push(task);
 
     localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    return task;
 }
 
 
-// Display one task on the webpage
-function displayTask(taskname) {
+// DISPLAY ONE TASK
+
+function displayTask(task) {
 
     const taskListItem = document.createElement("li");
 
-    // Task text
+
+    // TASK TEXT
+
     const taskText = document.createElement("span");
-    taskText.textContent = taskname;
+
+    taskText.textContent = task.name;
 
     taskListItem.appendChild(taskText);
 
 
     // DELETE BUTTON
+
     const clearButton = document.createElement("button");
 
     clearButton.textContent = "🗑️";
@@ -36,51 +94,62 @@ function displayTask(taskname) {
     taskListItem.appendChild(clearButton);
 
 
-    clearButton.addEventListener("click", function () {
+    clearButton.addEventListener("click", function() {
 
-        taskList.removeChild(taskListItem);
+        const index = tasks.findIndex(function(item) {
 
-        const index = tasks.indexOf(taskname);
+            return item.id === task.id;
+
+        });
+
 
         if (index !== -1) {
+
             tasks.splice(index, 1);
+
         }
 
+
         localStorage.setItem("tasks", JSON.stringify(tasks));
+
+        renderTasks();
 
     });
 
 
     // COMPLETE BUTTON
+
     const completeButton = document.createElement("button");
 
     completeButton.textContent = "✔️";
 
     taskListItem.appendChild(completeButton);
 
-    let isCompleted = false;
 
-    completeButton.addEventListener("click", function () {
+    // SHOW COMPLETED STYLE
 
-        if (isCompleted === false) {
+    if (task.completed === true) {
 
-            taskListItem.style.textDecoration = "line-through";
-            taskListItem.style.color = "gray";
+        taskListItem.style.textDecoration = "line-through";
 
-            isCompleted = true;
+        taskListItem.style.color = "gray";
 
-        } else {
+    }
 
-            taskListItem.style.textDecoration = "none";
-            taskListItem.style.color = "white";
 
-            isCompleted = false;
-        }
+    completeButton.addEventListener("click", function() {
+
+        task.completed = !task.completed;
+
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+
+        renderTasks();
 
     });
 
 
     // EDIT BUTTON
+
     const editButton = document.createElement("button");
 
     editButton.textContent = "✏️";
@@ -88,55 +157,148 @@ function displayTask(taskname) {
     taskListItem.appendChild(editButton);
 
 
-    editButton.addEventListener("click", function () {
+    editButton.addEventListener("click", function() {
 
         const newTaskName = prompt(
             "Enter the new task name:",
-            taskText.textContent
+            task.name
         );
+
 
         if (newTaskName !== null && newTaskName.trim() !== "") {
 
-            const index = tasks.indexOf(taskname);
-
-            taskText.textContent = newTaskName;
-
-            if (index !== -1) {
-                tasks[index] = newTaskName;
-            }
+            task.name = newTaskName.trim();
 
             localStorage.setItem("tasks", JSON.stringify(tasks));
+
+            renderTasks();
+
         }
 
     });
 
 
-    // Put task inside <ul>
+    // ADD TASK TO PAGE
+
     taskList.appendChild(taskListItem);
+
 }
 
 
-// ADD BUTTON
-addTaskButton.addEventListener("click", function () {
+// GET FILTERED TASKS
 
-    const taskname = inputField.value;
+function getFilteredTasks() {
 
-    if (taskname.trim() === "") {
-        alert("Please enter a task name.");
-        return;
+    if (currentFilter === "active") {
+
+        return tasks.filter(function(task) {
+
+            return task.completed === false;
+
+        });
+
     }
+
+
+    if (currentFilter === "completed") {
+
+        return tasks.filter(function(task) {
+
+            return task.completed === true;
+
+        });
+
+    }
+
+
+    return tasks;
+
+}
+
+
+// RENDER TASKS
+
+function renderTasks() {
+
+    // CLEAR CURRENT LIST
+
+    taskList.innerHTML = "";
+
+
+    // GET THE CORRECT TASKS
+
+    const filteredTasks = getFilteredTasks();
+
+
+    // DISPLAY THEM
+
+    filteredTasks.forEach(function(task) {
+
+        displayTask(task);
+
+    });
+
+}
+
+
+// ADD TASK BUTTON
+
+addTaskButton.addEventListener("click", function() {
+
+    const taskname = inputField.value.trim();
+
+
+    if (taskname === "") {
+
+        alert("Please enter a task name.");
+
+        return;
+
+    }
+
 
     addTask(taskname);
 
-    displayTask(taskname);
-
     inputField.value = "";
 
+    renderTasks();
+
 });
 
 
-// DISPLAY SAVED TASKS WHEN PAGE LOADS
-tasks.forEach(function(task) {
-    displayTask(task);
+// ALL FILTER
+
+allTasksButton.addEventListener("click", function() {
+
+    currentFilter = "all";
+
+    renderTasks();
+
 });
 
+
+// ACTIVE FILTER
+
+activeTasksButton.addEventListener("click", function() {
+
+    currentFilter = "active";
+
+    renderTasks();
+
+});
+
+
+// COMPLETED FILTER
+
+completedTasksButton.addEventListener("click", function() {
+
+    currentFilter = "completed";
+
+    renderTasks();
+
+});
+
+
+// INITIAL DISPLAY
+
+renderTasks();
