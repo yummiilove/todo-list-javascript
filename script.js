@@ -330,8 +330,52 @@ addTaskButton.addEventListener("click", function() {
     renderTasks();
 
 });
+// ENTER KEY SUPPORT
+
+inputField.addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+
+        const taskname = inputField.value.trim();
 
 
+        if (taskname === "") {
+
+            alert("Please enter a task name.");
+
+            return;
+
+        }
+
+
+        addTask(taskname);
+
+        inputField.value = "";
+
+        renderTasks();
+
+    }
+
+});
+function updateActiveFilter() {
+
+    allTasksButton.classList.remove("filterActive");
+    activeTasksButton.classList.remove("filterActive");
+    completedTasksButton.classList.remove("filterActive");
+
+    if (currentFilter === "all") {
+        allTasksButton.classList.add("filterActive");
+    }
+
+    else if (currentFilter === "active") {
+        activeTasksButton.classList.add("filterActive");
+    }
+
+    else if (currentFilter === "completed") {
+        completedTasksButton.classList.add("filterActive");
+    }
+
+}
 // ALL FILTER
 
 allTasksButton.addEventListener("click", function() {

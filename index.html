@@ -1,82 +1,298 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+
+    <title>FocusFlow | Productivity Dashboard</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
-    <div class="app">
+    <div class="dashboard">
 
-        <input
-            type="text"
-            id="inputField"
-            placeholder="Type something..."
-        >
+        <!-- TOP NAVIGATION -->
 
-        <button id="addtask">Add Task</button>
+        <header class="topbar">
 
+            <div class="brand">
+                <div class="brandIcon">✦</div>
+                <span>FocusFlow</span>
+            </div>
 
-        <!-- FILTER BUTTONS -->
+            <nav class="navigation">
+                <a href="#" class="navLink active">Dashboard</a>
+                <a href="#tasks" class="navLink">My Tasks</a>
+                <a href="#progress" class="navLink">Progress</a>
+            </nav>
 
-        <div class="filters">
+            <div class="profile">
+                <div class="profileAvatar">R</div>
+                <span>My Workspace</span>
+            </div>
 
-            <button id="allTasks">All</button>
-
-            <button id="activeTasks">Active</button>
-
-            <button id="completedTasks">Completed</button>
-
-        </div>
-
-
-        <!-- TASK COUNTER -->
-
-        <div class="taskCounter">
-
-            <span>
-                Total: <strong id="totalCount">0</strong>
-            </span>
-
-            <span>
-                Active: <strong id="activeCount">0</strong>
-            </span>
-
-            <span>
-                Completed: <strong id="completedCount">0</strong>
-            </span>
-
-        </div>
-
-         <!-- TASK ACTIONS -->
-
-        <div class="taskActions">
-
-            <button id="clearCompleted">
-                🧹 Clear Completed
-            </button>
-
-            <button id="clearAll">
-                🗑️ Clear All
-            </button>
-
-        </div>
+        </header>
 
 
-        <!-- TASK LIST -->
+        <!-- MAIN DASHBOARD -->
 
-        <ul id="taskList"></ul>
+        <main class="dashboardContent">
+
+            <!-- PAGE INTRO -->
+
+            <section class="welcome">
+
+                <div>
+                    <p class="eyebrow">YOUR PERSONAL WORKSPACE</p>
+
+                    <h1>Task Manager</h1>
+
+                    <p class="welcomeText">
+                        Stay organized, stay focused, and make every day count.
+                    </p>
+                </div>
+
+                <div class="dateBadge">
+                    <span>✦</span> PRODUCTIVITY MODE
+                </div>
+
+            </section>
+
+
+            <!-- DASHBOARD GRID -->
+
+            <div class="dashboardGrid">
+
+
+                <!-- LEFT: TASK MANAGEMENT -->
+
+                <section class="mainPanel" id="tasks">
+
+                    <div class="panelHeading">
+
+                        <div>
+                            <p class="eyebrow">PLAN YOUR DAY</p>
+                            <h2>My Tasks</h2>
+                        </div>
+
+                        <span class="liveBadge">
+                            <span class="liveDot"></span>
+                            LIVE LIST
+                        </span>
+
+                    </div>
+
+
+                    <!-- ADD TASK -->
+
+                    <div class="inputGroup">
+
+                        <div class="inputWrapper">
+                            <span class="inputIcon">✎</span>
+
+                            <input
+                                type="text"
+                                id="inputField"
+                                placeholder="What do you need to get done?"
+                            >
+                        </div>
+
+                        <button id="addtask">
+                            + Add Task
+                        </button>
+
+                    </div>
+
+
+                    <!-- FILTERS -->
+
+                    <div class="taskToolbar">
+
+                        <div class="filters">
+
+                            <button id="allTasks" class="filterActive">
+                                All
+                            </button>
+
+                            <button id="activeTasks">
+                                Active
+                            </button>
+
+                            <button id="completedTasks">
+                                Completed
+                            </button>
+
+                        </div>
+
+                        <span class="listLabel">TASK LIST</span>
+
+                    </div>
+
+
+                    <!-- TASK LIST -->
+
+                    <ul id="taskList"></ul>
+
+
+                    <!-- TASK ACTIONS -->
+
+                    <div class="taskActions">
+
+                        <button id="clearCompleted">
+                            ✓ Clear Completed
+                        </button>
+
+                        <button id="clearAll">
+                            Clear All
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- RIGHT: SIDEBAR -->
+
+                <aside class="sidePanel" id="progress">
+
+
+                    <!-- PROGRESS CARD -->
+
+                    <section class="sideCard">
+
+                        <div class="panelHeading">
+
+                            <div>
+                                <p class="eyebrow">YOUR ACTIVITY</p>
+                                <h2>Your Progress</h2>
+                            </div>
+
+                            <span class="sideIcon">◈</span>
+
+                        </div>
+
+
+                        <div class="statsGrid">
+
+                            <div class="statCard purpleStat">
+
+                                <span class="statIcon">◈</span>
+
+                                <p>Total Tasks</p>
+
+                                <strong id="totalCount">0</strong>
+
+                            </div>
+
+
+                            <div class="statCard greenStat">
+
+                                <span class="statIcon">✓</span>
+
+                                <p>Completed</p>
+
+                                <strong id="completedCount">0</strong>
+
+                            </div>
+
+
+                            <div class="statCard blueStat">
+
+                                <span class="statIcon">◷</span>
+
+                                <p>In Progress</p>
+
+                                <strong id="activeCount">0</strong>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- FOCUS CARD -->
+
+                    <section class="sideCard focusCard">
+
+                        <div class="focusIcon">✦</div>
+
+                        <p class="eyebrow">A LITTLE REMINDER</p>
+
+                        <h3>Progress over perfection.</h3>
+
+                        <p>
+                            Every small task you complete brings you
+                            one step closer to your goals.
+                        </p>
+
+                    </section>
+
+
+                    <!-- QUICK TIPS -->
+
+                    <section class="sideCard quickCard">
+
+                        <div class="panelHeading">
+
+                            <div>
+                                <p class="eyebrow">STAY PRODUCTIVE</p>
+                                <h2>Quick Tips</h2>
+                            </div>
+
+                            <span class="sideIcon">✧</span>
+
+                        </div>
+
+                        <div class="tipItem">
+                            <span>01</span>
+                            <p>Break big goals into smaller tasks.</p>
+                        </div>
+
+                        <div class="tipItem">
+                            <span>02</span>
+                            <p>Focus on one task at a time.</p>
+                        </div>
+
+                        <div class="tipItem">
+                            <span>03</span>
+                            <p>Celebrate every completed task.</p>
+                        </div>
+
+                    </section>
+
+
+                </aside>
+
+            </div>
+
+
+            <!-- FOOTER -->
+
+            <footer class="footer">
+
+                <span>FOCUSFLOW © 2026</span>
+
+                <span>BUILT FOR BETTER DAYS ✦</span>
+
+            </footer>
+
+        </main>
 
     </div>
+
 
     <script src="script.js"></script>
 
 </body>
 
 </html>
-
