@@ -2,291 +2,366 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>FocusFlow | Productivity Dashboard</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FocusFlow — Get Things Done</title>
 
     <link rel="stylesheet" href="style.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
 </head>
 
+
 <body>
 
-    <div class="dashboard">
+    <div class="page">
 
-        <!-- TOP NAVIGATION -->
+        <!-- =========================
+             HEADER
+        ========================== -->
 
         <header class="topbar">
 
-            <div class="brand">
-                <div class="brandIcon">✦</div>
-                <span>FocusFlow</span>
+            <div class="logo">
+
+                <span class="logoMark">✦</span>
+
+                <span>FOCUSFLOW</span>
+
             </div>
 
-            <nav class="navigation">
-                <a href="#" class="navLink active">Dashboard</a>
-                <a href="#tasks" class="navLink">My Tasks</a>
-                <a href="#progress" class="navLink">Progress</a>
-            </nav>
 
-            <div class="profile">
-                <div class="profileAvatar">R</div>
-                <span>My Workspace</span>
+            <div class="topBadge">
+
+                PRODUCTIVITY / 01
+
             </div>
 
         </header>
 
 
-        <!-- MAIN DASHBOARD -->
+        <!-- =========================
+             HERO
+        ========================== -->
 
-        <main class="dashboardContent">
+        <section class="hero">
 
-            <!-- PAGE INTRO -->
+            <div class="heroText">
 
-            <section class="welcome">
+                <span class="heroTag">
+                    YOUR DAILY COMMAND CENTER
+                </span>
 
-                <div>
-                    <p class="eyebrow">YOUR PERSONAL WORKSPACE</p>
+                <h1>
+                    GET<br>
+                    <span>THINGS</span><br>
+                    DONE.
+                </h1>
 
-                    <h1>Task Manager</h1>
+                <p>
+                    Plan it. Do it. Check it off.
+                </p>
 
-                    <p class="welcomeText">
-                        Stay organized, stay focused, and make every day count.
-                    </p>
+            </div>
+
+
+            <div class="heroSticker">
+
+                <span>MAKE</span>
+                <strong>IT</strong>
+                <span>HAPPEN</span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MAIN CONTENT
+        ========================== -->
+
+        <main class="workspace">
+
+
+            <!-- =====================
+                 TASK PANEL
+            ====================== -->
+
+            <section class="taskPanel" id="tasks">
+
+                <div class="panelHeader">
+
+                    <div>
+
+                        <span class="sectionNumber">
+                            01 / TASKS
+                        </span>
+
+                        <h2>
+                            MY TO-DO LIST
+                        </h2>
+
+                    </div>
+
+
+                    <div class="taskEmoji">
+                        ✓
+                    </div>
+
                 </div>
 
-                <div class="dateBadge">
-                    <span>✦</span> PRODUCTIVITY MODE
+
+                <!-- ADD TASK -->
+
+                <div class="addTaskArea">
+
+                    <input
+                        type="text"
+                        id="inputField"
+                        placeholder="WRITE A NEW TASK..."
+                    >
+
+                    <button id="addtask">
+                        ADD +
+                    </button>
+
+                </div>
+
+
+                <!-- FILTERS -->
+
+                <div class="filterRow">
+
+                    <div class="filters">
+
+                        <button
+                            id="allTasks"
+                            class="filterActive"
+                        >
+                            ALL
+                        </button>
+
+                        <button id="activeTasks">
+                            ACTIVE
+                        </button>
+
+                        <button id="completedTasks">
+                            DONE
+                        </button>
+
+                    </div>
+
+
+                    <span class="listCount">
+                        TASKS
+                    </span>
+
+                </div>
+
+
+                <!-- TASK LIST -->
+
+                <ul id="taskList"></ul>
+
+
+                <!-- ACTIONS -->
+
+                <div class="taskActions">
+
+                    <button id="clearCompleted">
+                        ✓ CLEAR DONE
+                    </button>
+
+                    <button id="clearAll">
+                        × CLEAR ALL
+                    </button>
+
                 </div>
 
             </section>
 
 
-            <!-- DASHBOARD GRID -->
 
-            <div class="dashboardGrid">
+            <!-- =====================
+                 RIGHT COLUMN
+            ====================== -->
+
+            <aside class="sideColumn">
 
 
-                <!-- LEFT: TASK MANAGEMENT -->
+                <!-- STATS -->
 
-                <section class="mainPanel" id="tasks">
+                <section class="statsPanel">
 
-                    <div class="panelHeading">
+                    <div class="panelHeader small">
 
                         <div>
-                            <p class="eyebrow">PLAN YOUR DAY</p>
-                            <h2>My Tasks</h2>
-                        </div>
 
-                        <span class="liveBadge">
-                            <span class="liveDot"></span>
-                            LIVE LIST
-                        </span>
+                            <span class="sectionNumber">
+                                02 / PROGRESS
+                            </span>
+
+                            <h2>
+                                THE NUMBERS
+                            </h2>
+
+                        </div>
 
                     </div>
 
 
-                    <!-- ADD TASK -->
+                    <div class="stats">
 
-                    <div class="inputGroup">
+                        <div class="stat total">
 
-                        <div class="inputWrapper">
-                            <span class="inputIcon">✎</span>
+                            <span>
+                                TOTAL
+                            </span>
 
-                            <input
-                                type="text"
-                                id="inputField"
-                                placeholder="What do you need to get done?"
-                            >
-                        </div>
-
-                        <button id="addtask">
-                            + Add Task
-                        </button>
-
-                    </div>
-
-
-                    <!-- FILTERS -->
-
-                    <div class="taskToolbar">
-
-                        <div class="filters">
-
-                            <button id="allTasks" class="filterActive">
-                                All
-                            </button>
-
-                            <button id="activeTasks">
-                                Active
-                            </button>
-
-                            <button id="completedTasks">
-                                Completed
-                            </button>
+                            <strong id="totalCount">
+                                0
+                            </strong>
 
                         </div>
 
-                        <span class="listLabel">TASK LIST</span>
 
-                    </div>
+                        <div class="stat active">
+
+                            <span>
+                                ACTIVE
+                            </span>
+
+                            <strong id="activeCount">
+                                0
+                            </strong>
+
+                        </div>
 
 
-                    <!-- TASK LIST -->
+                        <div class="stat completed">
 
-                    <ul id="taskList"></ul>
+                            <span>
+                                DONE
+                            </span>
 
+                            <strong id="completedCount">
+                                0
+                            </strong>
 
-                    <!-- TASK ACTIONS -->
-
-                    <div class="taskActions">
-
-                        <button id="clearCompleted">
-                            ✓ Clear Completed
-                        </button>
-
-                        <button id="clearAll">
-                            Clear All
-                        </button>
+                        </div>
 
                     </div>
 
                 </section>
 
 
-                <!-- RIGHT: SIDEBAR -->
 
-                <aside class="sidePanel" id="progress">
+                <!-- MOTIVATION -->
 
+                <section class="quotePanel">
 
-                    <!-- PROGRESS CARD -->
+                    <div class="quoteMark">
+                        "
+                    </div>
 
-                    <section class="sideCard">
+                    <p>
+                        DON'T WAIT FOR
+                        MOTIVATION.
+                        <br>
+                        <strong>
+                            CREATE MOMENTUM.
+                        </strong>
+                    </p>
 
-                        <div class="panelHeading">
+                    <span>
+                        — FOCUSFLOW
+                    </span>
 
-                            <div>
-                                <p class="eyebrow">YOUR ACTIVITY</p>
-                                <h2>Your Progress</h2>
-                            </div>
-
-                            <span class="sideIcon">◈</span>
-
-                        </div>
-
-
-                        <div class="statsGrid">
-
-                            <div class="statCard purpleStat">
-
-                                <span class="statIcon">◈</span>
-
-                                <p>Total Tasks</p>
-
-                                <strong id="totalCount">0</strong>
-
-                            </div>
+                </section>
 
 
-                            <div class="statCard greenStat">
 
-                                <span class="statIcon">✓</span>
+                <!-- RULES -->
 
-                                <p>Completed</p>
+                <section class="rulesPanel">
 
-                                <strong id="completedCount">0</strong>
+                    <span class="sectionNumber">
+                        03 / THE RULES
+                    </span>
 
-                            </div>
-
-
-                            <div class="statCard blueStat">
-
-                                <span class="statIcon">◷</span>
-
-                                <p>In Progress</p>
-
-                                <strong id="activeCount">0</strong>
-
-                            </div>
-
-                        </div>
-
-                    </section>
+                    <h2>
+                        KEEP IT SIMPLE.
+                    </h2>
 
 
-                    <!-- FOCUS CARD -->
+                    <div class="rule">
 
-                    <section class="sideCard focusCard">
+                        <b>01</b>
 
-                        <div class="focusIcon">✦</div>
+                        <span>
+                            ONE TASK AT A TIME.
+                        </span>
 
-                        <p class="eyebrow">A LITTLE REMINDER</p>
-
-                        <h3>Progress over perfection.</h3>
-
-                        <p>
-                            Every small task you complete brings you
-                            one step closer to your goals.
-                        </p>
-
-                    </section>
+                    </div>
 
 
-                    <!-- QUICK TIPS -->
+                    <div class="rule">
 
-                    <section class="sideCard quickCard">
+                        <b>02</b>
 
-                        <div class="panelHeading">
+                        <span>
+                            FINISH WHAT YOU START.
+                        </span>
 
-                            <div>
-                                <p class="eyebrow">STAY PRODUCTIVE</p>
-                                <h2>Quick Tips</h2>
-                            </div>
-
-                            <span class="sideIcon">✧</span>
-
-                        </div>
-
-                        <div class="tipItem">
-                            <span>01</span>
-                            <p>Break big goals into smaller tasks.</p>
-                        </div>
-
-                        <div class="tipItem">
-                            <span>02</span>
-                            <p>Focus on one task at a time.</p>
-                        </div>
-
-                        <div class="tipItem">
-                            <span>03</span>
-                            <p>Celebrate every completed task.</p>
-                        </div>
-
-                    </section>
+                    </div>
 
 
-                </aside>
+                    <div class="rule">
 
-            </div>
+                        <b>03</b>
 
+                        <span>
+                            SMALL WINS COUNT.
+                        </span>
 
-            <!-- FOOTER -->
+                    </div>
 
-            <footer class="footer">
+                </section>
 
-                <span>FOCUSFLOW © 2026</span>
-
-                <span>BUILT FOR BETTER DAYS ✦</span>
-
-            </footer>
+            </aside>
 
         </main>
+
+
+        <!-- =========================
+             FOOTER
+        ========================== -->
+
+        <footer>
+
+            <span>
+                FOCUSFLOW © 2026
+            </span>
+
+            <span>
+                BUILT TO GET SH*T DONE.
+            </span>
+
+            <span>
+                ✦ 01
+            </span>
+
+        </footer>
 
     </div>
 
